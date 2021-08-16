@@ -1,0 +1,13 @@
+{
+    "name": "apidoc demo",
+    "version": "1.0.0",
+    "description": "apidoc demo项目API文档",
+    "title": "apidoc demo API",
+    "url": "http://localhost:8081/api",
+    "sampleUrl": "http://localhost:8081/api",
+    "forceLanguage": "zh-cn",
+    "template": {
+        "withCompare": true,
+        "withGenerator": true
+    }
+}
