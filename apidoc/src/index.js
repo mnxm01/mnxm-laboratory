@@ -1,21 +1,19 @@
-//express_demo.js 文件
-var express = require('express');
-var app = express();
+import Express from 'express';
+import modules from './modules';
 
-app.use('/apidoc', express.static('dist_doc'));
 
-app.get('/api/users', function (req, res) {
-  res.send({
-    _id: 11111,
-    name: "张三"
-  });
+
+let app = Express()
+
+app.use('/doc',Express.static('dist_doc'));
+
+Object.keys(modules).forEach(key => {
+  Object.keys(modules[key]).forEach(subkey => {
+    console.log(`/api/${key}/${subkey}`)
+    app.get(`/api/${key}/${subkey}`, function (req, res) {
+      res.send(modules[key][subkey]());
+    })
+  })
 })
 
-var server = app.listen(8081, function () {
-
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log("应用实例，访问地址为 http://%s:%s", host, port)
-
-})
+app.listen(8080, () => console.log('server is running at http://localhost:8080'))
